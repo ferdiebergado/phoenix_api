@@ -18,5 +18,7 @@ defmodule PhoenixApi.Account.User do
     |> validate_required([:email, :password, :last_login, :role])
     |> validate_format(:email, ~r/@/)
     |> update_change(:email, &String.downcase(&1))
+    |> validate_length(:password, min: 8, max: 100)
+    |> unique_constraint(:email)
   end
 end
