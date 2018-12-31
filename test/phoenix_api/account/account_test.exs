@@ -6,8 +6,18 @@ defmodule PhoenixApi.AccountTest do
   describe "users" do
     alias PhoenixApi.Account.User
 
-    @valid_attrs %{email: "some email", last_login: ~N[2010-04-17 14:00:00], password: "some password", role: 42}
-    @update_attrs %{email: "some updated email", last_login: ~N[2011-05-18 15:01:01], password: "some updated password", role: 43}
+    @valid_attrs %{
+      email: "some email",
+      last_login: ~N[2010-04-17 14:00:00],
+      password: "some password",
+      role: 42
+    }
+    @update_attrs %{
+      email: "some updated email",
+      last_login: ~N[2011-05-18 15:01:01],
+      password: "some updated password",
+      role: 43
+    }
     @invalid_attrs %{email: nil, last_login: nil, password: nil, role: nil}
 
     def user_fixture(attrs \\ %{}) do
