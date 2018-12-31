@@ -8,12 +8,11 @@ defmodule PhoenixApiWeb.Router do
   scope "/api" do
     pipe_through :api
 
-    forward("/graphql", Absinthe.Plug, schema: PhoenixApiWeb.Schema, interface: :simple)
+    forward("/graphql", Absinthe.Plug, schema: PhoenixApiWeb.Schema, json_codec: Jason)
 
     if Mix.env() == :dev do
       forward("/graphiql", Absinthe.Plug.GraphiQL,
         schema: PhoenixApiWeb.Schema,
-        # interface: :simple,
         json_codec: Jason
       )
     end
