@@ -4,10 +4,10 @@ defmodule PhoenixApi.Account.User do
 
   schema "users" do
     field :email, :string, unique: true
-    field :last_login, :naive_datetime
-    field :password, :string
+    field :password, :string, virtual: true
     field :password_hash, :string
     field :role, :integer, default: 1
+    field :last_login, :utc_datetime
 
     timestamps()
   end
@@ -15,7 +15,7 @@ defmodule PhoenixApi.Account.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :last_login, :role])
+    |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
     |> validate_format(:email, ~r/@/)
     |> update_change(:email, &String.downcase(&1))
